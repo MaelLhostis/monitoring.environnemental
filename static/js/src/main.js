@@ -243,6 +243,9 @@ Annotator.prototype = {
     }
 
 };
+
+
+
 var annotator;
 function main() {
     // Create all the components
@@ -252,8 +255,11 @@ function main() {
 }
 main();
 
+
 var currentURL;
 var loadSound = function(id){
+
+    wavesurferShow.empty();
     annotator.wavesurfer.empty();
     wavesurferShow.clearRegions();
     currentURL = "/static/wav/dataset1/" + id + ".wav";
@@ -267,4 +273,6 @@ waveform.addEventListener('mousedown', function(e) {
 });
 waveform.addEventListener('mouseup', function(e) {
     annotator.update(currentURL);
+
 });
+

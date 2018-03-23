@@ -3,10 +3,10 @@
 <head>
     <title>Audio Annotator</title>
 
+    <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/audio-annotator.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/plugin/wavesurfer.regions.min.js"></script>
 
     <script type="text/javascript" src="/static/js/lib/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="/static/js/lib/materialize.min.js"></script>
@@ -36,10 +36,10 @@
 <div style="width:20%;float:left;background: #8e8e8e;color:white;height:1200px;;">
 
  <select id="datasetSelector" onchange="loadDataset(this.value)" style="display:block;color:black;">
+  <option value="-">-</option>
   <option value="dataset1">dataset1</option>
   <option value="dataset2">dataset2</option>
 </select> 
-
 
 
 </div>
@@ -74,6 +74,9 @@
                     $("#"+ i).remove();
                 }
             }
+
+            if(value == "-") {return;}
+
             $.ajax({
                 url: '/static/wav/' + value + '/info.json',
                 type: 'get',
@@ -85,7 +88,6 @@
                          json = data;
 
 
-            console.log(value)
 
             for (var i = 1; i <= json[0].n; i++) {
 
@@ -121,7 +123,6 @@
     wavesurferShow.on('ready', function () {
 
     wavesurferShow.enableDragSelection({});});
-
 
 
 
